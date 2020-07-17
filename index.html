@@ -17,16 +17,26 @@
 
 <body>
 
-  <div id="app">
-    <div class="container">
+  <div class="container">
 
-      <div class="row" :style="appStyles">
+    <div id="navigation">
+      <div class="row">
         <div class="col-sm-12 text-center">
-          <h1>Guest List</h1>
+          <h1>{{ appName }}</h1>
+        </div>
+        <div>
+          <ul>
+            <template v-for="navLink in navLinks">
+              <li v-for="(value, key, index) in navLink">{{ key }} | {{ value }} | {{ index }}</li>
+              <hr>
+            </template>
+          </ul>
         </div>
       </div>
+    </div>
 
-      <div class="row" :style="appStyles">
+    <div id="app">
+      <div class="row">
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header" v-text="event.eventDate">
@@ -38,12 +48,8 @@
               <p class="card-text" v-html="event.signUpText"></p>
 
               <form class="form-inline" v-on:submit.prevent="formSubmitted">
-                <input type="text" 
-                  id="nameInput" 
-                  class="form-control mb-2 mr-sm-2 mb-sm-0" 
-                  placeholder="Jane Doe"
-                  v-model="newNameText"
-                  v-on:keyup.enter="keyPressed">
+                <input type="text" id="nameInput" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Jane Doe"
+                  v-model="newNameText" v-on:keyup.enter="keyPressed">
                 <input type="submit" class="btn btn-primary" value="Submit"></input>
               </form>
             </div>
@@ -51,7 +57,7 @@
         </div>
       </div>
 
-      <div class="row" :style="appStyles">
+      <div class="row">
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header">
@@ -62,7 +68,7 @@
             <div class="card-block">
               <div v-if="guestName.length">
                 <div class="card-success rounded name-box" v-for="(name, index) in sortName" :key="index">
-                  {{ name.toUpperCase() }}
+                  {{ name | formatName }}
                 </div>
               </div>
               <div v-else>

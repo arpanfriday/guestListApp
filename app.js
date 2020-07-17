@@ -9,16 +9,11 @@ new Vue({
         },
         newNameText: '',
         guestName: [],
-        appStyles: {
-            marginTop: '25px',
-            color: 'rgb(66,66,66)'
-        },
         eventCapacity: 25,
         eventCapacityPercentage: 0
     },
     methods: {
         formSubmitted: function() {
-            console.log('method')
             if(this.newNameText.length > 0 && this.eventCapacityPercentage < 100) {
                 this.guestName.push(this.newNameText)
                 this.newNameText = ''
@@ -39,5 +34,23 @@ new Vue({
         guestName: function(data) {
             console.log('Watch triggered')
         }
+    },
+    filters: {
+        formatName: function(value) {
+            return value.slice(0, 1).toUpperCase() + value.slice(1).toLowerCase()
+        }
     }
 });
+
+new Vue({
+    el: '#navigation',
+    data: {
+        appName: 'Guest List',
+        navLinks: [
+            {name: "Home", id: 1},
+            {name: "Ucoming Events", id: 2},
+            {name: "Guest Benifits", id: 3},
+            {name: "Latest News", id: 4},
+        ]
+    }
+})

@@ -1,9 +1,14 @@
 body {
-  background-color: #666666;
+  /* background-color: #666666; */
 }
 
 .name-box {
   padding: 10px;
   margin: 10px;
   display: inline-block;
+}
+
+.row {
+  margin-top: 25px;
+  color: rgb(66,66,66);
 }
