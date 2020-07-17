@@ -1,4 +1,4 @@
-new Vue({
+var vm1 = new Vue({
     el: '#app',
     data: {
         event: {
@@ -39,18 +39,51 @@ new Vue({
         formatName: function(value) {
             return value.slice(0, 1).toUpperCase() + value.slice(1).toLowerCase()
         }
-    }
+    },
+    beforeCreate() {
+        console.log('before create')
+    },
+    created() {
+        console.log('created')
+    },
+    beforeMount() {
+        console.log('before mount')
+    },
+    mounted() {
+        console.log('mounted')
+    },
+    beforeUpdate() {
+        console.log('before update')
+    },
+    updated() {
+        console.log('updated')
+    },
+    beforeDestroy() {
+        console.log('before destroy')
+    },
+    destroyed() {
+        console.log('destroyed')
+    },
 });
 
-new Vue({
+var vm2 = new Vue({
     el: '#navigation',
     data: {
         appName: 'Guest List',
         navLinks: [
-            {name: "Home", id: 1},
-            {name: "Ucoming Events", id: 2},
-            {name: "Guest Benifits", id: 3},
-            {name: "Latest News", id: 4},
+            {name: "Home", id: 1, url: "https://linktr.ee/binary_greens"},
+            {name: "Ucoming Events", id: 2, url: "https://www.amazon.in"},
+            {name: "Guest Benifits", id: 3, url: "https://www.facebook.com"},
+            {name: "Latest News", id: 4, url: "https://www.flipkart.com"},
         ]
+    }, 
+    methods: {
+        changeTitle: function() {
+            this.$refs.name.innerText = 'Title changed'
+            console.log(this.$refs)
+        }
     }
 })
+
+
+// console.log(vm1)
