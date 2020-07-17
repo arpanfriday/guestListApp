@@ -9,20 +9,35 @@ new Vue({
         },
         newNameText: '',
         guestName: [],
-        isSubmit: false,
         appStyles: {
             marginTop: '25px',
             color: 'rgb(66,66,66)'
-        }
+        },
+        eventCapacity: 25,
+        eventCapacityPercentage: 0
     },
     methods: {
         formSubmitted: function() {
-            // console.log(this.newNameText)
-            if(this.newNameText.length > 0) {
+            console.log('method')
+            if(this.newNameText.length > 0 && this.eventCapacityPercentage < 100) {
                 this.guestName.push(this.newNameText)
                 this.newNameText = ''
-                this.isSubmit = true
+                this.eventCapacityPercentage = this.guestName.length / (this.eventCapacity / 100)
             }
+        },
+        keyPressed: function(){
+            console.log('key pressed')
+        }
+    },
+    computed: {
+        sortName: function() {
+            console.log('sorted')
+            return this.guestName.sort()
+        }
+    },
+    watch: {
+        guestName: function(data) {
+            console.log('Watch triggered')
         }
     }
 });
