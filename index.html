@@ -66,17 +66,19 @@
               <br>
               <progress v-bind:style="{width: eventCapacityPercentage + '%'}"></progress>
             </div>
+
             <div class="card-block">
 
-                <transition-group name="scale">
-                  <div class="card-success rounded name-box" v-for="(name, index) in sortName" :key="index">
-                    {{ name | formatName }}
-                  </div>
-                </transition-group>
+              <transition-group :name="effect1">
+                <div class="card-success rounded name-box" v-for="(name, index) in sortName" :key="name">
+                  {{ name | formatName }}
+                </div>
+              </transition-group>
 
-                <div v-if="guestName.length === 0">
+              <div v-if="guestName.length === 0">
                 <h4>No names added yet...</h4>
               </div>
+
             </div>
           </div>
 
